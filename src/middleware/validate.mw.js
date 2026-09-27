@@ -10,7 +10,7 @@ module.exports.validateBook = async (req, res, next) => {
     req.body = validatedBody;
     next();
   } catch (error) {
-    next(`Error is ${error}`);
+    next(`Error is ${error.errors}`);
   }
 };
 
@@ -20,7 +20,7 @@ module.exports.validateAuthor = async (req, res, next) => {
     req.body = validatedBody;
     next();
   } catch (error) {
-    next(`Error is ${error}`);
+    next(`Error is ${error.errors}`);
   }
 };
 
@@ -30,6 +30,6 @@ module.exports.validateCustomer = async (req, res, next) => {
     req.body = validatedBody;
     next();
   } catch (error) {
-    next(`Error is ${error}`);
+    next(`Error is ${error.errors}`);
   }
 };
