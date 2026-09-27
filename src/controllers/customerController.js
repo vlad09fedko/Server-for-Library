@@ -1,9 +1,8 @@
 const db = require('../../db');
 
-///////////////////////////////
 
 class CustomerController {
-  async getCustomers(req, res) {
+  async getCustomers(req, res, next) {
     try {
       const customers = await db.query(`
         SELECT full_name, id 
@@ -15,7 +14,7 @@ class CustomerController {
     }
   }
 
-  async getCustomerById(req, res) {
+  async getCustomerById(req, res, next) {
     try {
       const {
         params: { customerId },
@@ -34,7 +33,7 @@ class CustomerController {
     }
   }
 
-  async createCustomer(req, res) {
+  async createCustomer(req, res, next) {
     try {
       const { full_name, email, phone, createdAt, updatedAt, password } =
         req.body;
@@ -54,7 +53,7 @@ class CustomerController {
     }
   }
 
-  async updateCustomer(req, res) {
+  async updateCustomer(req, res, next) {
     try {
       const { id, full_name, email, phone, createdAt, updatedAt, password } =
         req.body;
@@ -79,7 +78,7 @@ class CustomerController {
     }
   }
 
-  async deleteCustomer(req, res) {
+  async deleteCustomer(req, res, next) {
     try {
       const {
         params: { customerId },

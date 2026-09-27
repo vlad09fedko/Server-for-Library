@@ -1,9 +1,7 @@
 const db = require('../../db');
 
-///////////////////////////////
-
 class BookController {
-  async getBooks(req, res) {
+  async getBooks(req, res, next) {
     try {
       const authors = await db.query(`
         SELECT title, id 
@@ -15,7 +13,7 @@ class BookController {
     }
   }
 
-  async getBookById(req, res) {
+  async getBookById(req, res, next) {
     try {
       const {
         params: { bookId },
@@ -34,7 +32,7 @@ class BookController {
     }
   }
 
-  async createBook(req, res) {
+  async createBook(req, res, next) {
     try {
       const { title, genre, shelf, description, createdAt, updatedAt, image } =
         req.body;
@@ -63,7 +61,7 @@ class BookController {
     }
   }
 
-  async updateBook(req, res) {
+  async updateBook(req, res, next) {
     try {
       const {
         id,
@@ -78,8 +76,8 @@ class BookController {
       const updatedBook = await db.query(
         `
         UPDATE books
-        SET 
-        title = $2, 
+        SET
+        title = $2,
         genre_id = (
           SELECT id
           FROM genres
@@ -105,7 +103,7 @@ class BookController {
     }
   }
 
-  async deleteBook(req, res) {
+  async deleteBook(req, res, next) {
     try {
       const {
         params: { bookId },

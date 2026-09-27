@@ -1,9 +1,8 @@
 const db = require('../../db');
 
-///////////////////////////////
 
 class AuthorController {
-  async getAuthors(req, res) {
+  async getAuthors(req, res, next) {
     try {
       const authors = await db.query(`
         SELECT full_name, id 
@@ -15,7 +14,7 @@ class AuthorController {
     }
   }
 
-  async getAuthorById(req, res) {
+  async getAuthorById(req, res, next) {
     try {
       const {
         params: { authorId },
@@ -34,7 +33,7 @@ class AuthorController {
     }
   }
 
-  async createAuthor(req, res) {
+  async createAuthor(req, res, next) {
     try {
       const { full_name, email, nationality, createdAt, updatedAt } = req.body;
       const newAuthor = await db.query(
@@ -58,7 +57,7 @@ class AuthorController {
     }
   }
 
-  async updateAuthor(req, res) {
+  async updateAuthor(req, res, next) {
     try {
       const { id, full_name, email, nationality, createdAt, updatedAt } =
         req.body;
@@ -86,7 +85,7 @@ class AuthorController {
     }
   }
 
-  async deleteAuthor(req, res) {
+  async deleteAuthor(req, res, next) {
     try {
       const {
         params: { authorId },

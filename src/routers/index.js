@@ -4,8 +4,6 @@ const bookRouters = require('./bookRouters');
 const authorRouters = require('./authorRouters');
 const customerRouters = require('./customerRouters');
 
-/////////////////////////////////////////////////////
-
 const router = new Router();
 
 router.use('/books', bookRouters);
