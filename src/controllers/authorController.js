@@ -1,6 +1,5 @@
 const db = require('../../db');
 
-
 class AuthorController {
   async getAuthors(req, res, next) {
     try {
@@ -9,6 +8,7 @@ class AuthorController {
         FROM authors
         `);
       res.json(authors.rows);
+      next();
     } catch (error) {
       console.error(error.message);
     }
@@ -28,6 +28,7 @@ class AuthorController {
         [authorId],
       );
       res.json(author.rows[0]);
+      next();
     } catch (error) {
       console.error(error.message);
     }
@@ -52,6 +53,7 @@ class AuthorController {
         [full_name, email, nationality, createdAt, updatedAt],
       );
       res.json(newAuthor.rows[0]);
+      next();
     } catch (error) {
       console.error(error.message);
     }
@@ -80,6 +82,7 @@ class AuthorController {
         [id, full_name, email, nationality, createdAt, updatedAt],
       );
       res.json(updatedAuthor.rows[0]);
+      next();
     } catch (error) {
       console.error(error.message);
     }
@@ -101,6 +104,7 @@ class AuthorController {
       } else {
         res.status(404).send('Author not found');
       }
+      next();
     } catch (error) {
       console.error(error.message);
     }

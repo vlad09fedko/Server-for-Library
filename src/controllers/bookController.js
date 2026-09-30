@@ -8,6 +8,7 @@ class BookController {
         FROM books
         `);
       res.json(authors.rows);
+      next();
     } catch (error) {
       console.error(error.message);
     }
@@ -27,6 +28,7 @@ class BookController {
         [bookId],
       );
       res.json(book.rows[0]);
+      next();
     } catch (error) {
       console.error(error.message);
     }
@@ -56,6 +58,7 @@ class BookController {
         [title, genre, shelf, description, createdAt, updatedAt, image],
       );
       res.json(newBook.rows[0]);
+      next();
     } catch (error) {
       console.error(error.message);
     }
@@ -98,6 +101,7 @@ class BookController {
         [id, title, genre, shelf, description, createdAt, updatedAt, image],
       );
       res.json(updatedBook.rows[0]);
+      next();
     } catch (error) {
       console.error(error.message);
     }
@@ -119,6 +123,7 @@ class BookController {
       } else {
         res.status(404).send('Author not found');
       }
+      next();
     } catch (error) {
       console.error(error.message);
     }
