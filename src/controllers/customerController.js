@@ -8,9 +8,8 @@ class CustomerController {
         FROM customers
         `);
       res.json(customers.rows);
-      next();
     } catch (error) {
-      console.error(error.message);
+      next(error);
     }
   }
 
@@ -28,9 +27,8 @@ class CustomerController {
         [customerId],
       );
       res.json(customer.rows[0]);
-      next();
     } catch (error) {
-      console.error(error.message);
+      next(error);
     }
   }
 
@@ -49,9 +47,8 @@ class CustomerController {
         [full_name, email, phone, createdAt, updatedAt, password],
       );
       res.json(newCustomer.rows[0]);
-      next();
     } catch (error) {
-      console.error(error.message);
+      next(error);
     }
   }
 
@@ -75,9 +72,8 @@ class CustomerController {
         [id, full_name, email, phone, createdAt, updatedAt, password],
       );
       res.json(updatedCustomer.rows[0]);
-      next();
     } catch (error) {
-      console.error(error.message);
+      next(error);
     }
   }
 
@@ -95,11 +91,10 @@ class CustomerController {
       if (delCustomer.rows.length > 0) {
         res.json(delCustomer.rows[0]);
       } else {
-        res.status(404).send('Author not found');
+        res.status(404).send('Customer not found');
       }
-      next();
     } catch (error) {
-      console.error(error.message);
+      next(error);
     }
   }
 }

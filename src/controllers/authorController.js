@@ -8,9 +8,8 @@ class AuthorController {
         FROM authors
         `);
       res.json(authors.rows);
-      next();
     } catch (error) {
-      console.error(error.message);
+      next(error);
     }
   }
 
@@ -28,9 +27,8 @@ class AuthorController {
         [authorId],
       );
       res.json(author.rows[0]);
-      next();
     } catch (error) {
-      console.error(error.message);
+      next(error);
     }
   }
 
@@ -53,9 +51,8 @@ class AuthorController {
         [full_name, email, nationality, createdAt, updatedAt],
       );
       res.json(newAuthor.rows[0]);
-      next();
     } catch (error) {
-      console.error(error.message);
+      next(error);
     }
   }
 
@@ -82,9 +79,8 @@ class AuthorController {
         [id, full_name, email, nationality, createdAt, updatedAt],
       );
       res.json(updatedAuthor.rows[0]);
-      next();
     } catch (error) {
-      console.error(error.message);
+      next(error);
     }
   }
 
@@ -104,9 +100,8 @@ class AuthorController {
       } else {
         res.status(404).send('Author not found');
       }
-      next();
     } catch (error) {
-      console.error(error.message);
+      next(error);
     }
   }
 }

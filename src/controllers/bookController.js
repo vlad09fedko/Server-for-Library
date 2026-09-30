@@ -8,9 +8,8 @@ class BookController {
         FROM books
         `);
       res.json(authors.rows);
-      next();
     } catch (error) {
-      console.error(error.message);
+      next(error);
     }
   }
 
@@ -28,9 +27,8 @@ class BookController {
         [bookId],
       );
       res.json(book.rows[0]);
-      next();
     } catch (error) {
-      console.error(error.message);
+      next(error);
     }
   }
 
@@ -58,9 +56,8 @@ class BookController {
         [title, genre, shelf, description, createdAt, updatedAt, image],
       );
       res.json(newBook.rows[0]);
-      next();
     } catch (error) {
-      console.error(error.message);
+      next(error);
     }
   }
 
@@ -101,9 +98,8 @@ class BookController {
         [id, title, genre, shelf, description, createdAt, updatedAt, image],
       );
       res.json(updatedBook.rows[0]);
-      next();
     } catch (error) {
-      console.error(error.message);
+      next(error);
     }
   }
 
@@ -121,11 +117,10 @@ class BookController {
       if (delBook.rows.length > 0) {
         res.json(delBook.rows[0]);
       } else {
-        res.status(404).send('Author not found');
+        res.status(404).send('Book not found');
       }
-      next();
     } catch (error) {
-      console.error(error.message);
+      next(error);
     }
   }
 }
